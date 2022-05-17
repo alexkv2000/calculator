@@ -3,22 +3,16 @@ import java.util.function.*;
 public class Calculator {
     static Supplier<Calculator> instance = Calculator::new;
 
-    BinaryOperator<Integer> plus = (x, y) -> x + y;
+    BinaryOperator<Integer> plus = Integer::sum;
     BinaryOperator<Integer> minus = (x, y) -> x - y;
     BinaryOperator<Integer> multiply = (x, y) -> x * y;
 
-    BinaryOperator<Integer> devide = (x, y) -> {
-        if (y==0) {
-            System.out.println("на ноль делить нельзя.");
-            throw new ArithmeticException ("Арифметическая ошибка: деление на ноль");
-        } else return x / y;
-
-    };
+    BinaryOperator<Double> devide = (x, y) -> (y == 0) ? 0.0 : x / y;
 
     UnaryOperator<Integer> pow = x -> x * x;
     UnaryOperator<Integer> abs = x -> x > 0 ? x : x * -1;
 
     Predicate<Integer> isPositive = x -> x > 0;
     Predicate<Integer> isNull = x -> x == 0;
-    Consumer<Integer> println = System.out::println;
+    Consumer<Double> println = System.out::println;
 }
